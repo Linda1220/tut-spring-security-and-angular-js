@@ -39,6 +39,13 @@ public class Product {
     //The product's provider
     private String provider;
 
+    // ------------------------
+    // PUBLIC METHODS
+    // ------------------------
+    public Product(){ }
+
+    public Product(long id){this.id = id;}
+
     public Product(String brand, String name, String price, String version, String weight, String provider) {
         this.brand = brand;
         this.name = name;
@@ -46,6 +53,15 @@ public class Product {
         this.version = version;
         this.weight = weight;
         this.provider = provider;
+    }
+
+    // Getter and setter methods
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getBrand() {
