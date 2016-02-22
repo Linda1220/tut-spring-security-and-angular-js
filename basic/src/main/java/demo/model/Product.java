@@ -28,7 +28,13 @@ public class Product {
 
     // The product's price
     @NotNull
-    private String price;
+    private String price1;
+
+    // The product's price
+    private String price2;
+
+    // The product's price
+    private String price3;
 
     //The product's version
     private String version;
@@ -37,8 +43,14 @@ public class Product {
     private String weight;
 
     //The product's provider
-    private String provider;
+    @NotNull
+    private String provider1;
 
+    //The product's provider
+    private String provider2;
+
+    //The product's provider
+    private String provider3;
     // ------------------------
     // PUBLIC METHODS
     // ------------------------
@@ -46,16 +58,21 @@ public class Product {
 
     public Product(long id){this.id = id;}
 
-    public Product(String brand, String name, String price, String version, String weight, String provider) {
+    public Product(String brand, String name, String price1, String price2, String price3, String version, String weight, String provider1, String provider2, String provider3) {
         this.brand = brand;
         this.name = name;
-        this.price = price;
+        this.price1 = price1;
+        this.price2 = price2;
+        this.price3 = price3;
         this.version = version;
         this.weight = weight;
-        this.provider = provider;
+        this.provider1 = provider1;
+        this.provider2 = provider2;
+        this.provider3 = provider3;
     }
 
     // Getter and setter methods
+
     public long getId() {
         return id;
     }
@@ -72,20 +89,44 @@ public class Product {
         this.brand = brand;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrice1() {
+        return price1;
+    }
+
+    public void setPrice1(String price1) {
+        this.price1 = price1;
+    }
+
+    public String getPrice2() {
+        return price2;
+    }
+
+    public void setPrice2(String price2) {
+        this.price2 = price2;
+    }
+
+    public String getPrice3() {
+        return price3;
+    }
+
+    public void setPrice3(String price3) {
+        this.price3 = price3;
+    }
+
     public String getVersion() {
         return version;
     }
 
     public void setVersion(String version) {
         this.version = version;
-    }
-
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String provider) {
-        this.provider = provider;
     }
 
     public String getWeight() {
@@ -96,20 +137,28 @@ public class Product {
         this.weight = weight;
     }
 
-    public String getPrice() {
-        return price;
+    public String getProvider1() {
+        return provider1;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setProvider1(String provider1) {
+        this.provider1 = provider1;
     }
 
-    public String getName() {
-        return name;
+    public String getProvider2() {
+        return provider2;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProvider2(String provider2) {
+        this.provider2 = provider2;
+    }
+
+    public String getProvider3() {
+        return provider3;
+    }
+
+    public void setProvider3(String provider3) {
+        this.provider3 = provider3;
     }
 }
 
