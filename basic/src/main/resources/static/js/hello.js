@@ -16,4 +16,7 @@
         return this.tab === checkTab;
     };
   });
+app.controller("productController",function(){
+    var query="select";
+    });
 })();

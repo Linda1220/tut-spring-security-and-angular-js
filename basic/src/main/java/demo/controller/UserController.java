@@ -20,10 +20,10 @@ public class UserController extends AbstractController{
     private UserDAO userDAO;
 
     @RequestMapping(path = "/user", method = {RequestMethod.PUT})
-    public User createUser(String email, String name) {
+    public Message createUser(String email, String name) {
         User user = new User(email, name);
         userDAO.save(user);
-        return user;
+        return OK;
     }
 
     @RequestMapping(path = "/user", method = {RequestMethod.DELETE})
@@ -38,6 +38,12 @@ public class UserController extends AbstractController{
         if(!StringUtils.isEmpty(email)){user.setEmail(email);}
         if(!StringUtils.isEmpty(name)){user.setName(name);}
         userDAO.save(user);
+        return OK;
+    }
+
+    @RequestMapping(path = "/user", method = {RequestMethod.GET})
+    public  Message queryUser(){
+        userDAO.findAll();
         return OK;
     }
 }

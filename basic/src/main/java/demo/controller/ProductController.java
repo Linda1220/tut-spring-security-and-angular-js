@@ -47,4 +47,10 @@ public class ProductController extends AbstractController {
         return OK;
     }
 
+    @RequestMapping(path = "/product", method = {RequestMethod.GET})
+    public  Message queryProduct(){
+        productDAO.findAll();
+        return OK;
+    }
+
 }
