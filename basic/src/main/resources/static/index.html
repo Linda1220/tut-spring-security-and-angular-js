@@ -1,40 +1,69 @@
 <!doctype html>
-<html ng-app="store">
+<html ng-app="user">
 <head>
-<title>Product Price Compare</title>
-<link href="css/angular-bootstrap.css" rel="stylesheet" type="text/css">
+    <title>Welcome to Linda's Small Shop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/angular-bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+        a:link {
+        color: green;
+        background-color: transparent;
+        text-decoration: none;
+        }
+        a:visited {
+        color: pink;
+        background-color: transparent;
+        text-decoration: none;
+        }
+        a:hover {
+        color: red;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+        a:active {
+        color: yellow;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+
+        .page-content {
+          margin: 50px;
+        }
+    </style>
 </head>
 
-<body ng-controller="storeController as store">
-	<div class="container">
-		<h1>Product List</h1>
-		<div ng-repeat="product in store.products">
-			<div id="product">
-				<div id="product-brand">{{product.brand}}</div>
-				<h4 id="product-name">{{product.name}}</h4>
-				<div id="product-weight">{{product.weight}}</div>
-				<div id="product.version">{{product.version}}</div>
-				<section ng-controller="PanelController as panel">
-					<ul>
-						<li ng-class="{active:panel.isSelected(1)}"><a href ng-click="panel.selectTab(1)">{{product.provider1}} Price</a></li>
-						<li ng-class="{active:panel.isSelected(2)}"><a href ng-click="panel.selectTab(2)">{{product.provider2}} Price</a></li>
-						<li ng-class="{active:panel.isSelected(3)}"><a href ng-click="panel.selectTab(3)">{{product.provider3}} Price</a></li>
-					</ul>
-					<div class="panel" ng-show="panel.isSelected(1)">
-						<p>{{product.price1}}</p>
-					</div>
-					<div class="panel" ng-show="panel.isSelected(2)">
-						<p>{{product.price2}}</p>
-					</div>
-					<div class="panel" ng-show="panel.isSelected(3)">
-						<p>{{product.price3}}</p>
-					</div>
-					{{tab}}
-				</section>
-			</div>
-		</div>
-	</div>
-	<script src="js/angular-bootstrap.js" type="text/javascript"></script>
-	<script src="js/hello.js"></script>
+<body>
+<div class="container">
+    <!-- HEADER AND NAVBAR -->
+    <header>
+        <nav class="navbar navbar-default navbar-fix-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">User && Product</a>
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#/users"><i class="fa fa-home"></i> Users</a></li>
+                    <li><a href="#/products"><i class="fa fa-home"></i> Products</a></li>
+                    <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                    <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-content">
+        <div ng-view></div>
+    </div>
+
+</div>
+
+<script src="js/angular-bootstrap.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+<script src="js/controller.js" type="text/javascript"></script>
+<script src="js/service.js" type="text/javascript"></script>
+<script src="js/directive.js" type="text/javascript"></script>
 </body>
 </html>
