@@ -1,8 +1,8 @@
-var user = angular.module("user", ["ngRoute", "ngAnimate", "ui.bootstrap"]);
+var app = angular.module("myapp", ["ngRoute", "ngAnimate", "ui.bootstrap"]);
 
-user.config(function($routeProvider){
-   $routeProvider.when("/users", {
-     templateUrl: "partial/users.html",
+app.config(function($routeProvider){
+   $routeProvider.when("/register", {
+     templateUrl: "partial/register.html",
      controller: "UserController"
    }).when("/", {
       templateUrl: "partial/default.html",
@@ -11,4 +11,7 @@ user.config(function($routeProvider){
       templateUrl: "partial/products.html",
       controller: "ProductController"
    });
-});
+}).config(function($httpProvider){
+    $httpProvider.defaults.headers.common.Accept = 'application/json';
+    $httpProvider.defaults.headers.delete = { 'Content-Type': 'application/json'};
+})

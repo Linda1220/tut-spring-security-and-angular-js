@@ -1,4 +1,13 @@
-body {
-}
-.ke {
-}
+.selected {
+   background-color: #58FAF4;
+ }
+
+ button.my-default {
+     width: 10em;
+     height: 3em;
+
+ }
+
+ input.form-control{
+    width: 20em;
+ }

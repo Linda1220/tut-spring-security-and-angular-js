@@ -1,5 +1,9 @@
 package demo.model;
 
+import demo.util.NullAwareBeanUtil;
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.StringUtils;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 

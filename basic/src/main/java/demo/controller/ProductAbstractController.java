@@ -1,6 +1,7 @@
 package demo.controller;
 
 import demo.model.ProductDAO;
+import demo.util.NullAwareBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class ProductAbstractController extends AbstractController {
     @Autowired
-    public ProductDAO productDAO;
+    protected ProductDAO productDAO;
 }
