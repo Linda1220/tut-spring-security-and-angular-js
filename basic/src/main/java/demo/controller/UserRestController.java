@@ -4,9 +4,12 @@ package demo.controller;
 
 import demo.model.User;
 import demo.model.UserDTO;
+import demo.util.NullAwareBeanUtil;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by ke.yang on 21/02/2016.
@@ -21,23 +24,15 @@ public class UserRestController extends UserAbstractController {
     }
 
     @RequestMapping(path = "/user", method = {RequestMethod.DELETE})
-    public Message deleteUser(long id) {
-        userDAO.delete(id);
+    public Message deleteUser(@RequestBody UserDTO userDTO) {
+        userDAO.delete(userDTO.getId());
         return OK;
     }
 
     @RequestMapping(path = "/user", method = {RequestMethod.POST})
-    public Message updateUser(long id, String email, String name, String password) {
-        User user = userDAO.findOne(id);
-        if (!StringUtils.isEmpty(email)) {
-            user.setEmail(email);
-        }
-        if (!StringUtils.isEmpty(name)) {
-            user.setName(name);
-        }
-        if (!StringUtils.isEmpty(password)) {
-            user.setPassword(password);
-        }
+    public Message updateUser(@RequestBody UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
+        User user = userDAO.findOne(userDTO.getId());
+        NullAwareBeanUtil.copyProperties(userDTO, user);
         userDAO.save(user);
         return OK;
     }

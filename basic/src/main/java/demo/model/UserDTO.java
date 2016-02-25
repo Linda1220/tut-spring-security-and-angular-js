@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Linda on 22/02/16.
  */
 public class UserDTO implements Serializable{
-
+    private long id;
     private String email;
     private String name;
     private String password;
@@ -17,6 +17,14 @@ public class UserDTO implements Serializable{
         this.email = email;
         this.name = name;
         this.password = password;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getEmail() {
