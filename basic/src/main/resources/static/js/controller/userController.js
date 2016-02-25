@@ -15,6 +15,7 @@ app.controller("UserController",["$scope", "$http", "$uibModal", "$log", functio
 
 
    $scope.createUser = function(newUser){
+       console.log(newUser);
        $http({
          method: "PUT",
          url: "/user",

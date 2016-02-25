@@ -9,28 +9,28 @@ public class ProductDTO {
     private long id;
     private String brand;
     private String name;
-    private String price1;
-    private String price2;
-    private String price3;
+    private String price;
+    private String oldprice;
+    private String instruction;
     private String version;
     private String weight;
-    private String provider1;
-    private String provider2;
-    private String provider3;
+    private String provider;
+    private String picturelink;
+    private int quantity;
 
     public ProductDTO(){}
 
-    public ProductDTO(String brand, String name, String price1, String price2, String price3, String version, String weight, String provider1, String provider2, String provider3) {
+    public ProductDTO(String brand, String name, String price, String oldprice, String instruction, String version, String weight, String provider, String picturelink, int quantity) {
         this.brand = brand;
         this.name = name;
-        this.price1 = price1;
-        this.price2 = price2;
-        this.price3 = price3;
+        this.price = price;
+        this.oldprice = oldprice;
+        this.instruction = instruction;
         this.version = version;
         this.weight = weight;
-        this.provider1 = provider1;
-        this.provider2 = provider2;
-        this.provider3 = provider3;
+        this.provider = provider;
+        this.picturelink = picturelink;
+        this.quantity = quantity;
     }
 
     public long getId() {
@@ -57,28 +57,28 @@ public class ProductDTO {
         this.name = name;
     }
 
-    public String getPrice1() {
-        return price1;
+    public String getPrice() {
+        return price;
     }
 
-    public void setPrice1(String price1) {
-        this.price1 = price1;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public String getPrice2() {
-        return price2;
+    public String getOldprice() {
+        return oldprice;
     }
 
-    public void setPrice2(String price2) {
-        this.price2 = price2;
+    public void setOldprice(String oldprice) {
+        this.oldprice = oldprice;
     }
 
-    public String getPrice3() {
-        return price3;
+    public String getInstruction() {
+        return instruction;
     }
 
-    public void setPrice3(String price3) {
-        this.price3 = price3;
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
     }
 
     public String getVersion() {
@@ -97,27 +97,27 @@ public class ProductDTO {
         this.weight = weight;
     }
 
-    public String getProvider1() {
-        return provider1;
+    public String getProvider() {
+        return provider;
     }
 
-    public void setProvider1(String provider1) {
-        this.provider1 = provider1;
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 
-    public String getProvider2() {
-        return provider2;
+    public String getPicturelink() {
+        return picturelink;
     }
 
-    public void setProvider2(String provider2) {
-        this.provider2 = provider2;
+    public void setPicturelink(String picturelink) {
+        this.picturelink = picturelink;
     }
 
-    public String getProvider3() {
-        return provider3;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setProvider3(String provider3) {
-        this.provider3 = provider3;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

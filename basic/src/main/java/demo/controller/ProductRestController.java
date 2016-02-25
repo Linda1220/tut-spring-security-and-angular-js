@@ -45,10 +45,4 @@ public class ProductRestController extends ProductAbstractController {
         return all;
     }
 
-    @RequestMapping(path = "/product", method = {RequestMethod.GET})
-    public Product queryOne(long id) {
-        Product product = productDAO.findOne(id);
-        return product;
-    }
-
 }

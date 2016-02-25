@@ -1,12 +1,5 @@
 var app = angular.module("myapp");
 
-app.directive("myCustomer", function(){
-
-   return {
-      templateUrl: "directiveTemplates/default.html"
-   }
-});
-/*
 app.directive('validRepeatpassword', function () {
     return {
         require: 'ngModel',
@@ -18,4 +11,3 @@ app.directive('validRepeatpassword', function () {
         }
     }
 });
-*/
