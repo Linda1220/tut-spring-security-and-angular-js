@@ -1,7 +1,12 @@
 package demo.model;
 
+import demo.model.converter.LocalDateTimeConverter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Linda on 25/02/16.
@@ -18,30 +23,30 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id = 0;
 
-    // User who made the order
-    @NotNull
-    private long userId;
+    @ManyToOne
+    private User user;
 
-    // The order's address
-    @NotNull
-    private long addressId;
+    @OneToOne
+    private Address address;
 
-    //The product id in the order
+    //The order time
     @NotNull
-    private long productId;
-
-    //The product quantity
-    @NotNull
-    private int quantity;
-
-    //The product price
-    @NotNull
-    private String price;
+    @Convert(converter = LocalDateTimeConverter.class)
+    private Date order_date;
 
     //The product status
     @NotNull
     private String status;
 
+    //The ship track no
+    private String track_no;
+
+    //The ship provider
+    private String ship_method;
+
+    @OneToMany
+    @JoinColumn(name = "order_id")
+    private List<OrderDetail> orderdetails = new ArrayList<>();
     // ------------------------
     // PUBLIC METHODS
     // ------------------------
@@ -51,17 +56,15 @@ public class Order {
         this.id = id;
     }
 
-    public Order(long userId, long addressId, long productId, int quantity, String price, String status) {
-        this.userId = userId;
-        this.addressId = addressId;
-        this.productId = productId;
-        this.quantity = quantity;
-        this.price = price;
+    public Order(User user, Address address, Date order_date, String status, String track_no, String ship_method, List<OrderDetail> orderdetails) {
+        this.user = user;
+        this.address = address;
+        this.order_date = order_date;
         this.status = status;
+        this.track_no = track_no;
+        this.ship_method = ship_method;
+        this.orderdetails = orderdetails;
     }
-
-    public Order(OrderDTO orderDTO ){this(orderDTO.getUserId(),orderDTO.getAddressId(),orderDTO.getProductId(),orderDTO.getQuantity(),orderDTO.getPrice(),orderDTO.getStatus());}
-// Getter and setter methods
 
 
     public long getId() {
@@ -72,44 +75,28 @@ public class Order {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(long addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public long getProductId() {
-        return productId;
+    public Date getOrder_date() {
+        return order_date;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
+    public void setOrder_date(Date order_date) {
+        this.order_date = order_date;
     }
 
     public String getStatus() {
@@ -118,6 +105,30 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTrack_no() {
+        return track_no;
+    }
+
+    public void setTrack_no(String track_no) {
+        this.track_no = track_no;
+    }
+
+    public String getShip_method() {
+        return ship_method;
+    }
+
+    public void setShip_method(String ship_method) {
+        this.ship_method = ship_method;
+    }
+
+    public List<OrderDetail> getOrderdetails() {
+        return orderdetails;
+    }
+
+    public void setOrderdetails(List<OrderDetail> orderdetails) {
+        this.orderdetails = orderdetails;
     }
 }
 

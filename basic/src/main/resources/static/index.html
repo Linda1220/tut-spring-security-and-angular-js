@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/angular-bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
@@ -31,7 +32,7 @@
                         <li><a href="#"><i class="fa fa-heart"></i> 我的收藏</a></li>
                         <li><a href="#"><i class="fa fa-shopping-cart"></i> 购物车</a></li>
                         <li><a href="#"><i class="fa fa-crosshairs"></i> 结账</a></li>
-                        <li><a href="#"><i class="fa fa-lock"></i> 登陆</a></li>
+                        <li><a href="#/login"><i class="fa fa-lock"></i> 登陆</a></li>
                         <li><a href="#/register"><i class="fa fa-unlock"></i> 注册</a></li>
                     </ul>
                 </div>
@@ -40,6 +41,15 @@
             <div class="col-md-4">
                 <div class="header-right">
                     <ul class="list-unstyled list-inline">
+                        <li class="dropdown dropdown-small">
+                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">欢迎 :</span><span class="value">{{user.name}}</span><b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">我的账户</a></li>
+                                <li><a href="#">历史订单</a></li>
+                                <li><a href="#">购物车</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown dropdown-small">
                             <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
                                     class="key">请选择货币 :</span><span class="value">纽币-NZD</span><b
@@ -101,10 +111,7 @@
         </div>
     </div>
 </div> <!-- End mainmenu area -->
-
 <div ng-view></div>
-
-
 <div class="footer-bottom-area">
     <div class="container">
         <div class="row">
@@ -127,16 +134,6 @@
         </div>
     </div>
 </div>
-
-
-<script src="js/angular-bootstrap.js" type="text/javascript"></script>
-<script src="js/app.js" type="text/javascript"></script>
-<script src="js/controller.js" type="text/javascript"></script>
-<script src="js/userController.js" type="text/javascript"></script>
-<script src="js/productController.js" type="text/javascript"></script>
-<script src="js/service.js" type="text/javascript"></script>
-<script src="js/directive.js" type="text/javascript"></script>
-<script src="js/jquery.sticky.js" type="text/javascript"></script>
-
+<script src="js/all.js" type="text/javascript"></script>
 </body>
 </html>

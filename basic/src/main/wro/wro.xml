@@ -2,12 +2,12 @@
     <group name="angular-bootstrap">
         <css>webjar:bootstrap/3.2.0/less/bootstrap.less</css>
         <css>file:@project.basedir@/src/main/wro/main.less</css>
-        <js>webjar:jquery/2.1.1/jquery.min.js</js>
-        <js>webjar:angularjs/1.4.9/angular.min.js</js>
-        <js>webjar:angularjs/1.4.9/angular-route.min.js</js>
-        <js>webjar:angularjs/1.4.9/angular-cookies.min.js</js>
-        <js>webjar:angularjs/1.4.9/angular-animate.min.js</js>
-        <js>webjar:angular-ui-bootstrap/1.1.1/ui-bootstrap.min.js</js>
-        <js>webjar:angular-ui-bootstrap/1.1.1/ui-bootstrap-tpls.min.js</js>
+        <js>webjar:jquery/2.1.1/jquery.js</js>
+        <js>webjar:angularjs/1.4.9/angular.js</js>
+        <js>webjar:angularjs/1.4.9/angular-route.js</js>
+        <js>webjar:angularjs/1.4.9/angular-cookies.js</js>
+        <js>webjar:angularjs/1.4.9/angular-animate.js</js>
+        <js>webjar:angular-ui-bootstrap/1.1.1/ui-bootstrap.js</js>
+        <js>webjar:angular-ui-bootstrap/1.1.1/ui-bootstrap-tpls.js</js>
     </group>
 </groups>

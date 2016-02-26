@@ -1,5 +1,6 @@
 package demo.model;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -8,15 +9,21 @@ import java.io.Serializable;
 public class UserDTO implements Serializable{
     private long id;
     private String email;
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String username;
     private String password;
+    private String source;
     public UserDTO() {
     }
 
-    public UserDTO(String email, String name, String password) {
+    public UserDTO(String email, String firstName, String lastName, String username, String password, String source) {
         this.email = email;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
         this.password = password;
+        this.source = source;
     }
 
     public long getId() {
@@ -35,12 +42,28 @@ public class UserDTO implements Serializable{
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -49,5 +72,13 @@ public class UserDTO implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

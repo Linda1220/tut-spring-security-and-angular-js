@@ -10,11 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
@@ -24,6 +26,9 @@ import javax.servlet.Servlet;
 
 @SpringBootApplication
 @RestController
+@EntityScan(
+		basePackageClasses = { UiApplication.class, Jsr310JpaConverters.class }
+)
 public class UiApplication {
 
 	@RequestMapping("/resource")

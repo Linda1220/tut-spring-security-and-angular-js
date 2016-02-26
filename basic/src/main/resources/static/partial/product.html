@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-4">
+        <form novalidate>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input ng-model="newProduct.name" type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="brand">Brand Name</label>
+                <input ng-model="newProduct.brand" type="text" class="form-control" id="brand"
+                       placeholder="Brand">
+            </div>
+            <div class="form-group">
+                <label for="version">Version</label>
+                <input ng-model="newProduct.version" type="text" class="form-control" id="version"
+                       placeholder="Version">
+            </div>
+            <div class="form-group">
+                <label for="weight">Product Weight</label>
+                <input ng-model="newProduct.weight" type="text" class="form-control" id="weight" placeholder="Weight">
+            </div>
+            <div class="form-group">
+                <label for="provider1">Product Provider</label>
+                <input ng-model="newProduct.provider1" type="text" class="form-control" id="provider1"
+                       placeholder="Provider">
+            </div>
+            <div class="form-group">
+                <label for="price1">Product price</label>
+                <input ng-model="newProduct.price1" type="text" class="form-control" id="price1" placeholder="Price">
+            </div>
+            <div class="form-group">
+                <label for="provider2">Product Provider</label>
+                <input ng-model="newProduct.provider2" type="text" class="form-control" id="provider2"
+                       placeholder="Provider">
+            </div>
+            <div class="form-group">
+                <label for="price2">Product price</label>
+                <input ng-model="newProduct.price2" type="text" class="form-control" id="price2" placeholder="Price">
+            </div>
+            <div class="form-group">
+                <label for="provider3">Product Provider</label>
+                <input ng-model="newProduct.provider3" type="text" class="form-control" id="provider3"
+                       placeholder="Provider">
+            </div>
+            <div class="form-group">
+                <label for="price3">Product price</label>
+                <input ng-model="newProduct.price3" type="text" class="form-control" id="price3" placeholder="Price">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="ok(newProduct)">Submit</button>
+            <button type="reset" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        </form>
+    </div>
+</div>

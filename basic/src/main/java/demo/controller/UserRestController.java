@@ -6,7 +6,6 @@ import demo.model.User;
 import demo.model.UserDTO;
 import demo.util.NullAwareBeanUtil;
 import org.springframework.http.MediaType;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -38,8 +37,20 @@ public class UserRestController extends UserAbstractController {
     }
 
     @RequestMapping(path = "/users", method = {RequestMethod.GET})
-    public Iterable<User> queryAll() {
+    public Iterable<User> getAll() {
         Iterable<User> all = userDAO.findAll();
         return all;
+    }
+
+    @RequestMapping(path = "/user", method = {RequestMethod.GET})
+    public User getById(@RequestBody UserDTO userDTO){
+        User user = userDAO.findOne(userDTO.getId());
+        return user;
+    }
+
+    @RequestMapping(path = "/user/{username}", method = {RequestMethod.GET})
+    public User getByUsername(@PathVariable String username){
+        User user = userDAO.findByUsername(username);
+        return user;
     }
 }

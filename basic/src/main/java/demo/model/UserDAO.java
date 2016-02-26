@@ -10,4 +10,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 @Transactional
 public interface UserDAO extends CrudRepository<User, Long> {
+
+    User findByUsername(String username);
 }

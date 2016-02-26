@@ -6,12 +6,14 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Linda on 21/02/16.
  */
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
     // ------------------------
     // PRIVATE FIELDS
@@ -54,6 +56,10 @@ public class Product {
 
     //The product's quantity
     private int quantity;
+
+    @OneToMany
+    @JoinColumn(name = "product_id")
+    private List<OrderDetail> orderdetails = new ArrayList<>();
 
     // ------------------------
     // PUBLIC METHODS

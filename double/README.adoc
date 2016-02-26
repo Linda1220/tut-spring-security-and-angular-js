@@ -355,7 +355,7 @@ The `template` variable is initialized in our controller, first by defining a ut
 ----
 var computeDefaultTemplate = function(user) {
   self.template = user && user.roles
-      && user.roles.indexOf("ROLE_WRITER")>0 ? "write.html" : "read.html";		
+      && user.roles.indexOf("ROLE_WRITER")>0 ? "write.html" : "read.html";
 }
 ----
 
@@ -383,7 +383,7 @@ function($http) {
 })
 ----
 
-the first thing the application does is look at the usual (for this series) "/user" endpoint, then it extracts some data, sets the authenticated flag, and if the user is authenticated, computes the template by looking at the user data. 
+the first thing the application does is look at the usual (for this series) "/user" endpoint, then it extracts some data, sets the authenticated flag, and if the user is authenticated, computes the template by looking at the user data.
 
 To support this function on the backend we need an endpoint, e.g. in our main application class:
 

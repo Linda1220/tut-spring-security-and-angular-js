@@ -2,20 +2,22 @@ package demo.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Linda on 25/02/16.
  */
 @Entity
-@Table(name = "Address")
+@Table(name = "Addresses")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id = 0;
 
     // User who have the addreee
-    @NotNull
-    private long userId;
+    @OneToOne
+    private User user;
 
     //The addreess user name
     @NotNull
@@ -38,22 +40,25 @@ public class Address {
     @NotNull
     private String phone;
 
+    @OneToMany
+    @JoinColumn(name = "address_id")
+    private List<Order> orders = new ArrayList<>();
+
+
     public Address(){}
     public Address(long id) {
         this.id = id;
     }
 
-    public Address(long userId, String name, String address, String province, String country, String postcode, String phone) {
-        this.userId = userId;
+    public Address(User user, String name, String address, String province, String country, String postcode, String phone, List<Order> orders) {
+        this.user = user;
         this.name = name;
         this.address = address;
         this.province = province;
         this.country = country;
         this.postcode = postcode;
         this.phone = phone;
-    }
-    public Address(AddressDTO addressDTO){
-        this(addressDTO.getUserId(),addressDTO.getName(),addressDTO.getAddress(),addressDTO.getProvince(),addressDTO.getCountry(),addressDTO.getPostcode(),addressDTO.getPhone());
+        this.orders = orders;
     }
 
     public long getId() {
@@ -64,12 +69,12 @@ public class Address {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {
@@ -118,5 +123,13 @@ public class Address {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

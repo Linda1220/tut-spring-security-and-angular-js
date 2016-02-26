@@ -1,11 +1,13 @@
 package demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import demo.model.converter.LocalDateTimeConverter;
+import org.springframework.context.annotation.Role;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * An entity User composed by three fields (id, email, name).
@@ -27,17 +29,42 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id = 0;
 
+    @Convert(converter = LocalDateTimeConverter.class)
+    private Date  createdDateTime = new Date();
+    @Convert(converter = LocalDateTimeConverter.class)
+    private Date lastModifiedDateTime = new Date();
+
     // The user's email
     @NotNull
     private String email;
 
     // The user's name
     @NotNull
-    private String name;
+    private String firstName;
+
+    @NotNull
+    private String lastName;
+
+    @NotNull
+    private String username;
 
     //The user's password
     @NotNull
     private String password;
+
+    private boolean enabled = false;
+
+    private UserRole role;
+
+    private String source;
+
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Order> orders = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Address> addresses = new ArrayList<>();
     // ------------------------
     // PUBLIC METHODS
     // ------------------------
@@ -48,40 +75,60 @@ public class User {
         this.id = id;
     }
 
-    public User(String email, String name, String password) {
+    public User(String email, String firstName, String lastName, String username, String password, String source) {
         this.email = email;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
         this.password = password;
+        this.source = source;
     }
 
-  public User(UserDTO userDTO) {
-        this(userDTO.getEmail(), userDTO.getName(), userDTO.getPassword());
+    public User(UserDTO userDTO) {
+        this(userDTO.getEmail(),userDTO.getFirstName(),userDTO.getLastName(), userDTO.getUsername(),userDTO.getPassword(),userDTO.getSource());
     }
 
     // Getter and setter methods
+
 
     public long getId() {
         return id;
     }
 
-    public void setId(long value) {
-        this.id = value;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String value) {
-        this.email = value;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String value) {
-        this.name = value;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -90,5 +137,61 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Date getCreatedDateTime() {
+        return createdDateTime;
+    }
+
+    public void setCreatedDateTime(Date createdDateTime) {
+        this.createdDateTime = createdDateTime;
+    }
+
+    public Date getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(Date lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 } // class User

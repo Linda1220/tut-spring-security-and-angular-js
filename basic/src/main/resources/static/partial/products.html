@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-10">
+        <table class="table">
+            <tr ng-repeat="product in products track by product.id" ng-click="setSelectedProduct(product)"
+                ng-dblclick="open(product)" ng-class="{selected: product == selectedProduct}">
+                <td>{{$index+1}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.brand}}</td>
+                <td>{{product.version}}</td>
+                <td>{{product.weight}}</td>
+                <td>{{product.provider1}}</td>
+                <td>{{product.price1}}</td>
+                <td>{{product.provider2}}</td>
+                <td>{{product.price2}}</td>
+                <td>{{product.provider3}}</td>
+                <td>{{product.price3}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-2">
+        <form novalidate>
+            <div>
+                <button type="button" class="btn btn-default my-default" ng-click="open(true)">Add</button>
+            </div>
+            <br>
+            <div>
+                <button type="button" class="btn btn-default my-default" ng-click="open(false)">Edit</button>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-default my-default" ng-click="deleteProduct()">Delete
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="single-shop-product">
+                    <div class="product-upper">
+                        <img src="img/product-2.jpg" alt="">
+                    </div>
+                    <h2><a href="">Apple new mac book 2015 March :P</a></h2>
+                    <div class="product-carousel-price">
+                        <ins>$899.00</ins>
+                        <del>$999.00</del>
+                    </div>
+
+                    <div class="product-option-shop">
+                        <a class="add_to_cart_button" data-quantity="1" data-product_sku=""
+                           data-product_id={{product.id}}
+                           rel="nofollow" href="/canvas/shop/?add-to-cart={{product.id}}">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
