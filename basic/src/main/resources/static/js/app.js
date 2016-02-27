@@ -13,9 +13,10 @@ app.config(function($routeProvider){
    }).when("/login",{
       templateUrl: "partial/login.html",
       controller: "LoginController",
-      controllerAs: 'vm'
    });
 }).config(function($httpProvider){
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     $httpProvider.defaults.headers.common.Accept = 'application/json';
     $httpProvider.defaults.headers.delete = { 'Content-Type': 'application/json'};
 

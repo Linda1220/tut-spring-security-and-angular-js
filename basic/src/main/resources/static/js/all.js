@@ -202,9 +202,10 @@ app.config(function($routeProvider){
    }).when("/login",{
       templateUrl: "partial/login.html",
       controller: "LoginController",
-      controllerAs: 'vm'
    });
 }).config(function($httpProvider){
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     $httpProvider.defaults.headers.common.Accept = 'application/json';
     $httpProvider.defaults.headers.delete = { 'Content-Type': 'application/json'};
 
@@ -239,9 +240,40 @@ app.controller("DefaultController", function($scope){
 
 var app = angular.module("myapp");
 
-app.controller("LoginController",['$location','AuthenticationService',function($location, AuthenticationService){
+app.controller("LoginController",['$location', '$http', '$scope', function($location, $http, $scope){
 
+    $scope.login = function(credential) {
+      $http.post('/login', $.param(credential),
+      { headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'text/html,application/xhtml+xml,application/xml;'}}).then(function(value){
+         console.log(value);
+      }, function(err) { console.log(err)});
+    };
+
+
+    function handleError(error) {
+            return function () {
+                return { success: false, message: error };
+            };
+        }
+
+}])
+var app = angular.module("myapp");
+
+app.controller("RegisterController",['UserService', '$location', '$rootScope', "$scope",  function(UserService, $location, $rootScope, $scope){
+    $scope.register = function() {};
+
+    $scope.user = {};
+    $scope.register = function () {
+        UserService.Create($scope.user)
+            .then(function (response) {
+                console.log(response);
+                if (response.status == "OK") {
+                    $location.path('/');
+                }
+            });
+    }
 }]);
+
 var app = angular.module("myapp");
 
 app.controller("ProductController",["$scope", "$http", "$uibModal", "$log", function($scope, $http, $uibModal, $log){
@@ -345,23 +377,6 @@ app.controller("ProductDetailCtrl", function ($scope, $uibModalInstance, product
       };
 
 });
-var app = angular.module("myapp");
-
-app.controller("RegisterController",['UserService', '$location', '$rootScope', "$scope",  function(UserService, $location, $rootScope, $scope){
-    $scope.register = function() {};
-
-    $scope.user = {};
-    $scope.register = function () {
-        UserService.Create($scope.user)
-            .then(function (response) {
-                console.log(response);
-                if (response.status == "OK") {
-                    $location.path('/');
-                }
-            });
-    }
-}]);
-
 var app = angular.module("myapp");
 
 app.controller("UserController",["$scope", "$http", "$uibModal", "$log", function($scope, $http, $uibModal, $log){
@@ -550,9 +565,6 @@ app.factory('AuthenticationService',['$http', '$rootScope', '$timeout', 'UserSer
         }
     };
 }]);
-jQuery(document).ready(function($){
-$(".mainmenu-area").sticky({topSpacing:0});
-});
 var app = angular.module("myapp");
 
 app.factory('UserService',['$http',function($http){
@@ -604,3 +616,7 @@ app.factory('UserService',['$http',function($http){
     }
 
 }]);
+
+jQuery(document).ready(function($){
+$(".mainmenu-area").sticky({topSpacing:0});
+});

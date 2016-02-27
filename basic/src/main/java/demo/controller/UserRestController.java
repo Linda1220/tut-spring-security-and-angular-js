@@ -5,10 +5,13 @@ package demo.controller;
 import demo.model.User;
 import demo.model.UserDTO;
 import demo.util.NullAwareBeanUtil;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
 import java.lang.reflect.InvocationTargetException;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by ke.yang on 21/02/2016.

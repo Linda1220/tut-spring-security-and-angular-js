@@ -1,14 +1,11 @@
 package demo.model.converter;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.TimeZone;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
  * Created by Linda on 26/02/16.
