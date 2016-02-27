@@ -5,3 +5,5 @@ node_modules/
 *.iml
 \n
 target/
+\n
+all.js

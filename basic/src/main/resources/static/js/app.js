@@ -19,23 +19,9 @@ app.config(function($routeProvider){
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     $httpProvider.defaults.headers.common.Accept = 'application/json';
     $httpProvider.defaults.headers.delete = { 'Content-Type': 'application/json'};
+}).run(["$rootScope", "CookieService", "APP_CONSTANT", function($rootScope, CookieService, APP_CONSTANT) {
+    $rootScope.username = CookieService.getCookie(APP_CONSTANT.USERNAME_COOKIE);
 
-
-    run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-    function run($rootScope, $location, $cookieStore, $http) {
-        // keep user logged in after page refresh
-        $rootScope.globals = $cookieStore.get('globals') || {};
-        if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        }
-
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-            var loggedIn = $rootScope.globals.currentUser;
-            if (restrictedPage && !loggedIn) {
-                $location.path('/login');
-            }
-        });
-    }
-})
+}]).constant('APP_CONSTANT', {
+    'USERNAME_COOKIE': "USERNAME_COOKIE"
+});

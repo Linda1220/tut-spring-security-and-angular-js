@@ -6,6 +6,7 @@ app.factory('UserService',['$http',function($http){
     service.GetAll = GetAll;
     service.GetById = GetById;
     service.GetByUsername = GetByUsername;
+    service.GetByEmail = GetByEmail;
     service.Create = Create;
     service.Update = Update;
     service.Delete = Delete;
@@ -24,8 +25,13 @@ app.factory('UserService',['$http',function($http){
         return $http.get('/user' + username).then(handleSuccess, handleError('Error getting user by username'));
     }
 
+    function GetByEmail(email) {
+        return $http.get('/user' + email).then(handleSuccess, handleError('Error getting user by username'));
+    }
+
     function Create(user) {
-        return $http.put('/user', user).then(handleSuccess, handleError('Error creating user'));
+       console.log(user);
+        return $http.put('/register', user).then(handleSuccess, handleError('Error creating user'));
     }
 
     function Update(user) {
