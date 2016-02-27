@@ -22,20 +22,20 @@ public class ValidatorController {
 
     private static class Message {
 
-        private boolean duplicatedUsername;
+        private boolean valid;
         private String errorMessage;
 
-        Message(boolean duplicatedUsername, String errorMessage) {
-            this.duplicatedUsername = duplicatedUsername;
+        public Message(boolean valid, String errorMessage) {
+            this.valid = valid;
             this.errorMessage = errorMessage;
         }
 
-        public boolean isDuplicatedUsername() {
-            return duplicatedUsername;
+        public boolean isValid() {
+            return valid;
         }
 
-        public void setDuplicatedUsername(boolean duplicatedUsername) {
-            this.duplicatedUsername = duplicatedUsername;
+        public void setValid(boolean valid) {
+            this.valid = valid;
         }
 
         public String getErrorMessage() {
@@ -47,18 +47,21 @@ public class ValidatorController {
         }
     }
 
-    private Message duplicatedUsername = new Message(true, "username already existed");
-    private Message validUsername = new Message(false, "username valid");
+    private Message duplicatedUsername = new Message(false, "username already existed");
+    private Message validUsername = new Message(true, "Valid Username");
 
-    private static class DuplicateUsernameRequest {
-        private String username;
+    private Message existedEmail = new Message(false, "This email had been registerd,please change another or click the find account link");
+    private Message validEmail = new Message(true, "Valid Email");
 
-        public String getUsername() {
-            return username;
+    private static class DuplicateRequest {
+        private String value;
+
+        public String getValue() {
+            return value;
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        public void setValue(String value) {
+            this.value = value;
         }
     }
 
@@ -66,12 +69,24 @@ public class ValidatorController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "/validator/duplicatedUsername", method = {RequestMethod.POST})
-    public String duplicateUsername(@RequestBody DuplicateUsernameRequest duplicateUsernameRequest) {
-        User user = userDAO.findByUsername(duplicateUsernameRequest.getUsername());
+    public String duplicateUsername(@RequestBody DuplicateRequest duplicateRequest) {
+        User user = userDAO.findByUsername(duplicateRequest.getValue());
         if (user != null) {
             return gson.toJson(duplicatedUsername);
         }
 
         return gson.toJson(validUsername);
     }
+
+    @RequestMapping(value = "/validator/existedEmail", method = {RequestMethod.POST})
+    public String existedEmail(@RequestBody DuplicateRequest duplicateRequest) {
+        User user = userDAO.findByEmail(duplicateRequest.getValue());
+        if (user != null) {
+            return gson.toJson(existedEmail);
+        }
+
+        return gson.toJson(validEmail);
+    }
+
+
 }

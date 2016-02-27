@@ -59,7 +59,7 @@ public class UserRestController extends UserAbstractController {
 
     @RequestMapping(path = "/user/{email}", method = {RequestMethod.GET})
     public User getByEmail(@PathVariable String email){
-        User user = userDAO.findByUsername(email);
+        User user = userDAO.findByEmail(email);
         return user;
     }
 }
