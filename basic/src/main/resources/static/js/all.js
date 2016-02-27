@@ -202,10 +202,9 @@ app.config(function($routeProvider){
    }).when("/login",{
       templateUrl: "partial/login.html",
       controller: "LoginController",
+      controllerAs: 'vm'
    });
 }).config(function($httpProvider){
-
-    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     $httpProvider.defaults.headers.common.Accept = 'application/json';
     $httpProvider.defaults.headers.delete = { 'Content-Type': 'application/json'};
 
@@ -231,32 +230,9 @@ app.config(function($routeProvider){
 
 var app = angular.module("myapp");
 
-app.controller("DefaultController", function($scope){
+app.controller("LoginController",['$location','AuthenticationService',function($location, AuthenticationService){
 
-   $scope.name = "test";
-   $scope.username = "keyang";
-});
-
-
-var app = angular.module("myapp");
-
-app.controller("LoginController",['$location', '$http', '$scope', function($location, $http, $scope){
-
-    $scope.login = function(credential) {
-      $http.post('/login', $.param(credential),
-      { headers : { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'text/html,application/xhtml+xml,application/xml;'}}).then(function(value){
-         console.log(value);
-      }, function(err) { console.log(err)});
-    };
-
-
-    function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
-        }
-
-}])
+}]);
 var app = angular.module("myapp");
 
 app.controller("RegisterController",['UserService', '$location', '$rootScope', "$scope",  function(UserService, $location, $rootScope, $scope){
@@ -273,6 +249,15 @@ app.controller("RegisterController",['UserService', '$location', '$rootScope', "
             });
     }
 }]);
+
+var app = angular.module("myapp");
+
+app.controller("DefaultController", function($scope){
+
+   $scope.name = "test";
+   $scope.username = "keyang";
+});
+
 
 var app = angular.module("myapp");
 
@@ -429,6 +414,58 @@ app.directive('validRepeatpassword', function () {
 
 var app = angular.module("myapp");
 
+app.factory('UserService',['$http',function($http){
+    var service = {};
+
+    service.GetAll = GetAll;
+    service.GetById = GetById;
+    service.GetByUsername = GetByUsername;
+    service.Create = Create;
+    service.Update = Update;
+    service.Delete = Delete;
+
+    return service;
+
+    function GetAll() {
+        return $http.get('/users').then(handleSuccess, handleError('Error getting all users'));
+    }
+
+    function GetById(id) {
+        return $http.get('/user' + id).then(handleSuccess, handleError('Error getting user by id'));
+    }
+
+    function GetByUsername(username) {
+        return $http.get('/user' + username).then(handleSuccess, handleError('Error getting user by username'));
+    }
+
+    function Create(user) {
+        return $http.put('/user', user).then(handleSuccess, handleError('Error creating user'));
+    }
+
+    function Update(user) {
+        return $http.post('/user' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+    }
+
+    function Delete(id) {
+        return $http.delete('/user' + id).then(handleSuccess, handleError('Error deleting user'));
+    }
+
+    // private functions
+
+    function handleSuccess(res) {
+        return res.data;
+    }
+
+    function handleError(error) {
+        return function () {
+            return { success: false, message: error };
+        };
+    }
+
+}]);
+
+var app = angular.module("myapp");
+
 app.factory('AuthenticationService',['$http', '$rootScope', '$timeout', 'UserService',function($http, $rootScope, $timeout, UserService){
 
     var service = {};
@@ -565,58 +602,6 @@ app.factory('AuthenticationService',['$http', '$rootScope', '$timeout', 'UserSer
         }
     };
 }]);
-var app = angular.module("myapp");
-
-app.factory('UserService',['$http',function($http){
-    var service = {};
-
-    service.GetAll = GetAll;
-    service.GetById = GetById;
-    service.GetByUsername = GetByUsername;
-    service.Create = Create;
-    service.Update = Update;
-    service.Delete = Delete;
-
-    return service;
-
-    function GetAll() {
-        return $http.get('/users').then(handleSuccess, handleError('Error getting all users'));
-    }
-
-    function GetById(id) {
-        return $http.get('/user' + id).then(handleSuccess, handleError('Error getting user by id'));
-    }
-
-    function GetByUsername(username) {
-        return $http.get('/user' + username).then(handleSuccess, handleError('Error getting user by username'));
-    }
-
-    function Create(user) {
-        return $http.put('/user', user).then(handleSuccess, handleError('Error creating user'));
-    }
-
-    function Update(user) {
-        return $http.post('/user' + user.id, user).then(handleSuccess, handleError('Error updating user'));
-    }
-
-    function Delete(id) {
-        return $http.delete('/user' + id).then(handleSuccess, handleError('Error deleting user'));
-    }
-
-    // private functions
-
-    function handleSuccess(res) {
-        return res.data;
-    }
-
-    function handleError(error) {
-        return function () {
-            return { success: false, message: error };
-        };
-    }
-
-}]);
-
 jQuery(document).ready(function($){
 $(".mainmenu-area").sticky({topSpacing:0});
 });
