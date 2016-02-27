@@ -13,4 +13,5 @@ app.controller("RegisterController",['UserService', '$location', '$rootScope', "
                 }
             });
     }
+
 }]);
