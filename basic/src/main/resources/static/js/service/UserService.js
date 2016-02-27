@@ -30,7 +30,8 @@ app.factory('UserService',['$http',function($http){
     }
 
     function Create(user) {
-        return $http.put('/user', user).then(handleSuccess, handleError('Error creating user'));
+       console.log(user);
+        return $http.put('/register', user).then(handleSuccess, handleError('Error creating user'));
     }
 
     function Update(user) {
