@@ -102,7 +102,7 @@ public class UiApplication {
                     .failureHandler(authenticationFailureHandler)
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/index.html", "/", "/partial/**", "/js/**", "/css/**").permitAll()
+                    .antMatchers("/index.html", "/", "/partial/**", "/js/**", "/css/**", "/validator/**").permitAll()
                     .anyRequest().hasRole("USER")
                     .and()
                     .exceptionHandling().accessDeniedHandler(accessDeniedHandler)

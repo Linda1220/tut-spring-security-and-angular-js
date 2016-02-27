@@ -2,3 +2,7 @@ form button[disabled] {
   background: grey !important;
 
 }
+
+.error-message {
+  color: red;
+}
